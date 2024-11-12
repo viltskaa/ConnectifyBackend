@@ -1,0 +1,22 @@
+services:
+  spring-app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    restart: always
+
+  postgres:
+    image: 'postgres:latest'
+    ports:
+      - "8000:5432"
+    environment:
+      - POSTGRES_DB=connectify
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=12345
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

@@ -17,4 +17,6 @@ class Message {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private var author: User? = null
+
+    fun setTimestamp(timestamp: Long) { this.timestamp = timestamp }
 }

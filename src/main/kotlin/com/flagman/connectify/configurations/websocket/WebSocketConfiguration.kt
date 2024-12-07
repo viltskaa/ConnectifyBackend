@@ -1,4 +1,4 @@
-package com.flagman.connectify.configurations
+package com.flagman.connectify.configurations.websocket
 
 import org.springframework.context.annotation.Configuration
 import org.springframework.messaging.simp.config.MessageBrokerRegistry

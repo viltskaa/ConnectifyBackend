@@ -14,11 +14,11 @@ final class User(
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private var id: Long? = null
+    var id: Long? = null
 
     @Column(nullable = false)
     @OneToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
-    private var roles: Set<Role> = HashSet()
+    var roles: Set<Role> = HashSet()
 
     constructor(user: User) : this(user.username, user.password, user.email) {
         this.username = username

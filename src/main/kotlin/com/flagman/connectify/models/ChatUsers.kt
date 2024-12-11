@@ -7,24 +7,20 @@ import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
+import jakarta.persistence.Table
 
 @Entity
-final class Message {
+@Table(name = "chat_users")
+final class ChatUsers {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long? = null
-    var text: String? = null
-    var timestamp: Long? = null
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "reply_to_id", referencedColumnName = "id", nullable = true, unique = false)
-    var replyTo: Message? = null
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    var author: User? = null
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "chat_id", nullable = false)
     var chat: Chat? = null
 
-    fun setTimestamp(timestamp: Long) { this.timestamp = timestamp }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    var user: User? = null
 }

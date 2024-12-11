@@ -20,20 +20,21 @@ class SecurityConfig(
     @Bean
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
         http.invoke {
+            httpBasic { disable() }
             cors { disable() }
             csrf { disable() }
             authorizeHttpRequests {
+                authorize(HttpMethod.OPTIONS, "/**", permitAll)
+                authorize(HttpMethod.POST, "/auth/signIn", permitAll)
                 authorize(HttpMethod.POST, "/auth/signUp", permitAll)
+                authorize(HttpMethod.GET, "/auth/verify", permitAll)
+                authorize(HttpMethod.GET, "/auth/exist", permitAll)
+                authorize("/chat/**", permitAll)
                 authorize(anyRequest, authenticated)
             }
             addFilterBefore<UsernamePasswordAuthenticationFilter>(jwtRequestFilter)
             sessionManagement { sessionCreationPolicy = SessionCreationPolicy.STATELESS }
         }
         return http.build();
-    }
-
-    @Bean
-    fun passwordEncoder(): PasswordEncoder {
-        return BCryptPasswordEncoder()
     }
 }

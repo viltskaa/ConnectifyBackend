@@ -1,0 +1,12 @@
+package com.flagman.connectify.dto
+
+import com.flagman.connectify.models.User
+
+data class UserDto(
+    val id: Long,
+    val username: String,
+    val email: String,
+    val jwt: String?
+)
+
+fun toUserDto(user: User, jwt: String?) = UserDto(user.id!!, user.username!!, user.username!!, jwt)

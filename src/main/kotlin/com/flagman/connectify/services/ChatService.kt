@@ -3,7 +3,6 @@ package com.flagman.connectify.services
 import com.flagman.connectify.dto.ChatCreateDto
 import com.flagman.connectify.models.Chat
 import com.flagman.connectify.models.Message
-import com.flagman.connectify.models.User
 import com.flagman.connectify.repositories.ChatRepository
 import org.springframework.stereotype.Service
 import kotlin.jvm.optionals.getOrNull
@@ -24,6 +23,7 @@ class ChatService(
 
         chat.chatName = chatDto.name
         chat.color = chatDto.color
+        chat.icon = chatDto.icon
         chat.owner = user
 
         var newChat = chatRepository.save(chat)
@@ -35,6 +35,7 @@ class ChatService(
         val chat = chatRepository.findById(chatId).getOrNull()
         if (chat == null) return false
 
+        message.chat = chat
         chat.messages.add(message)
         chatRepository.save(chat)
 

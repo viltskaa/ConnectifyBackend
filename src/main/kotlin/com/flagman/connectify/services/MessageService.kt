@@ -49,8 +49,11 @@ class MessageService(
     fun getAllMessages(): List<MessageDto?> = messagesRepository
         .findAll()
         .map { it -> toMessageDto(it) }
-        .filter { f -> f != null }
-        .toList()
+
+    fun getUserMessages(userId: Long): List<MessageDto?> = messagesRepository
+        .getAllByAuthorId(userId)
+        .map { it -> toMessageDto(it) }
+
 
     fun getMessageById(id: Long): Message? = messagesRepository.findByIdOrNull(id)
 }

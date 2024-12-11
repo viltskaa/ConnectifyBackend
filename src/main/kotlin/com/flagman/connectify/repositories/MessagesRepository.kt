@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface MessagesRepository: JpaRepository<Message, Long> {
+    fun getAllByAuthorId(authorId: Long): List<Message>
 }

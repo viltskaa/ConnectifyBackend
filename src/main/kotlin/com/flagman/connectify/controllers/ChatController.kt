@@ -5,13 +5,11 @@ import com.flagman.connectify.dto.ChatDto
 import com.flagman.connectify.dto.MessageCreateDto
 import com.flagman.connectify.dto.MessageDto
 import com.flagman.connectify.dto.toChatDto
-import com.flagman.connectify.models.Chat
 import com.flagman.connectify.services.ChatService
 import com.flagman.connectify.services.MessageService
 import org.springframework.messaging.handler.annotation.DestinationVariable
 import org.springframework.messaging.handler.annotation.MessageMapping
 import org.springframework.messaging.handler.annotation.SendTo
-import org.springframework.messaging.simp.SimpMessagingTemplate
 import org.springframework.messaging.simp.annotation.SubscribeMapping
 import org.springframework.stereotype.Controller
 
@@ -19,10 +17,9 @@ import org.springframework.stereotype.Controller
 class ChatController(
     private val messageService: MessageService,
     private val chatService: ChatService,
-    private val template: SimpMessagingTemplate
 ) {
-    @MessageMapping("/sendMessage/{chatId}")
-    @SendTo("/topic/messages/{chatId}")
+    @MessageMapping("/sendMessage/{userId}")
+    @SendTo("/topic/messages/{userId}")
     fun handleChatMessage(messageCreateDto: MessageCreateDto): MessageDto? {
         var message = messageService.createMessage(messageCreateDto)
         if (message == null) {
@@ -48,8 +45,8 @@ class ChatController(
         return chats
     }
 
-    @SubscribeMapping("/history/{chatId}")
-    fun sendChatHistory(@DestinationVariable chatId: Long): List<MessageDto?> {
-        return messageService.getAllMessages();
+    @SubscribeMapping("/history/{userId}")
+    fun sendChatHistory(@DestinationVariable userId: Long): List<MessageDto?> {
+        return messageService.getUserMessages(userId);
     }
 }

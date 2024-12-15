@@ -29,6 +29,7 @@ class SecurityConfig(
                 authorize(HttpMethod.POST, "/auth/signUp", permitAll)
                 authorize(HttpMethod.GET, "/auth/verify", permitAll)
                 authorize(HttpMethod.GET, "/auth/exist", permitAll)
+                authorize(HttpMethod.GET, "/users/", permitAll)
                 authorize("/chat/**", permitAll)
                 authorize(anyRequest, authenticated)
             }

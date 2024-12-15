@@ -19,9 +19,9 @@ class AuthService(
     private var passwordEncoder: PasswordEncoder,
     private var jwt: JWT
 ) {
-    fun register(username: String, password: String, email: String): User {
+    fun register(username: String, password: String, email: String, bio: String): User {
         val encodedPassword = passwordEncoder.encode(password)
-        return userService.registerUser(username, encodedPassword, email)
+        return userService.registerUser(username, encodedPassword, email, bio)
     }
 
     fun generateToken(username: String): String = jwt.generate(username)

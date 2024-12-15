@@ -21,11 +21,7 @@ class MessageService(
         var message = Message()
 
         message.text = messageCreateDto.text
-        message.timestamp = LocalDateTime
-            .now()
-            .atZone(ZoneId.of("UTC"))
-            .toInstant()
-            .toEpochMilli()
+        message.timestamp = System.currentTimeMillis()
 
         val user: User? = authService.getUserFromToken(messageCreateDto.jwt);
         if (user == null) {
@@ -50,9 +46,12 @@ class MessageService(
         .findAll()
         .map { it -> toMessageDto(it) }
 
-    fun getUserMessages(userId: Long): List<MessageDto?> = messagesRepository
-        .getAllByAuthorId(userId)
-        .map { it -> toMessageDto(it) }
+    fun getUserMessages(userId: Long): List<MessageDto?> {
+        var chats = chatService.getUserChats(userId);
+        return chats
+            .flatMap { it -> it.messages }
+            .map { it -> toMessageDto(it) }
+    }
 
 
     fun getMessageById(id: Long): Message? = messagesRepository.findByIdOrNull(id)

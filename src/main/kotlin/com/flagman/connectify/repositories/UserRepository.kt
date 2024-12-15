@@ -9,4 +9,5 @@ interface UserRepository: JpaRepository<User, Long> {
     fun findOneByUsername(username: String): User?
     fun findUserById(userId: Long): User?
     fun existsByUsername(username: String): Boolean
+    fun findAllByUsernameContainsIgnoreCase(username: String): List<User>
 }

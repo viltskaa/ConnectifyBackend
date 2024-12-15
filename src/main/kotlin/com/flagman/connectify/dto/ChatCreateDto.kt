@@ -5,4 +5,5 @@ data class ChatCreateDto(
     var ownerId: Long,
     var color: String,
     var icon: String,
+    var users: List<Long>
 )

@@ -16,7 +16,6 @@ class JwtRequestFilter(
     private val jwt: JWT,
     private val userService: UserService
 ) : OncePerRequestFilter() {
-
     override fun doFilterInternal(request: HttpServletRequest, response: HttpServletResponse, filterChain: FilterChain) {
         val authHeader = request.getHeader("Authorization")
         val token = authHeader?.substring(7)

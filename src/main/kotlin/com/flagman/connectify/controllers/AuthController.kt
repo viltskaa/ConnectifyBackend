@@ -15,10 +15,14 @@ import org.springframework.web.bind.annotation.RestController
 class AuthController(
     private val authService: AuthService
 ) {
-
     @PostMapping("/signUp")
     fun register(@RequestBody request: RegisterRequest): ResponseEntity<String> {
-        authService.register(request.username, request.password, request.email)
+        authService.register(
+            request.username,
+            request.password,
+            request.email,
+            request.bio
+        )
         return ResponseEntity.ok("User registered successfully")
     }
 
@@ -37,5 +41,5 @@ class AuthController(
         ResponseEntity.ok(authService.existsUsername(username))
 }
 
-data class RegisterRequest(val username: String, val password: String, val email: String)
+data class RegisterRequest(val username: String, val password: String, val email: String, val bio: String)
 data class LoginRequest(val username: String, val password: String)

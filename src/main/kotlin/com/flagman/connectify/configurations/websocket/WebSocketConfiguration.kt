@@ -1,6 +1,7 @@
 package com.flagman.connectify.configurations.websocket
 
 import com.flagman.connectify.jwt.JWT
+import com.flagman.connectify.models.User
 import com.flagman.connectify.services.UserService
 import org.springframework.context.annotation.Configuration
 import org.springframework.messaging.Message
@@ -48,10 +49,16 @@ class WebSocketConfiguration(
 
                     var username = jwt.getUsernameFromToken(token.toString())
                     var userDetails = userService.getUserByUsername(username)
+                    userService.setUserOnline(username)
                     var usernamePasswordAuthenticationToken = UsernamePasswordAuthenticationToken(userDetails, null)
                     SecurityContextHolder.getContext().authentication = usernamePasswordAuthenticationToken
 
                     accessor.setUser(usernamePasswordAuthenticationToken)
+                } else if (StompCommand.DISCONNECT == accessor?.command) {
+                    var username = ((accessor.user as UsernamePasswordAuthenticationToken).principal as User).username
+                    if (username != null) {
+                        userService.setUserOffline(username)
+                    }
                 }
 
                 return message;

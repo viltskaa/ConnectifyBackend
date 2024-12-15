@@ -10,11 +10,14 @@ import lombok.Setter
 final class User(
     var username: String? = null,
     var password: String? = null,
-    var email: String? = null
+    var email: String? = null,
+    var bio: String? = null
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long? = null
+    var online: Boolean? = false
+    var lastSeen: Long? = null
 
     @Column(nullable = false)
     @OneToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL])

@@ -18,8 +18,8 @@ class ChatController(
     private val messageService: MessageService,
     private val chatService: ChatService,
 ) {
-    @MessageMapping("/sendMessage/{userId}")
-    @SendTo("/topic/messages/{userId}")
+    @MessageMapping("/sendMessage/{chatId}")
+    @SendTo("/topic/messages/{chatId}")
     fun handleChatMessage(messageCreateDto: MessageCreateDto): MessageDto? {
         var message = messageService.createMessage(messageCreateDto)
         if (message == null) {

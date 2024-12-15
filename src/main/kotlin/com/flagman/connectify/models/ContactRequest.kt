@@ -7,20 +7,18 @@ import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.ManyToOne
-import jakarta.persistence.OneToMany
 
 @Entity
-class Contacts {
+class ContactRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long? = null
+    var approved: Boolean? = false
+    var canceled: Boolean? = false
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = [(CascadeType.MERGE)])
-    var user: User? = null
+    var fromUser: User? = null
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = [(CascadeType.MERGE)])
-    var contact: User? = null
-
-    @ManyToOne(fetch = FetchType.EAGER, cascade = [(CascadeType.MERGE)])
-    var request: ContactRequest? = null
+    var toUser: User? = null
 }

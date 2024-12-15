@@ -1,6 +1,7 @@
 package com.flagman.connectify.dto
 
 import com.flagman.connectify.models.Message
+import com.flagman.connectify.models.MessageType
 
 data class MessageDto (
     val id: Long,
@@ -8,7 +9,8 @@ data class MessageDto (
     val timestamp: Long,
     val author: UserDto,
     val chatId: Long,
-    val replyTo: ReplyMessageDto?
+    val replyTo: ReplyMessageDto?,
+    val type: MessageType?
 )
 
 fun toMessageDto(msg: Message): MessageDto? {
@@ -25,5 +27,6 @@ fun toMessageDto(msg: Message): MessageDto? {
         toUserDto(msg.author!!, null),
         msg.chat!!.id!!,
         reply,
+        msg.type
     )
 }

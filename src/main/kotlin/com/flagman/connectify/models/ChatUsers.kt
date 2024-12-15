@@ -15,6 +15,7 @@ final class ChatUsers {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long? = null
+    var timestamp: Long? = null
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "chat_id", nullable = false)

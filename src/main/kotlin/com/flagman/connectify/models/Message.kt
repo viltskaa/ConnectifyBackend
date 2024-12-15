@@ -1,6 +1,8 @@
 package com.flagman.connectify.models
 
 import jakarta.persistence.Entity
+import jakarta.persistence.EnumType
+import jakarta.persistence.Enumerated
 import jakarta.persistence.FetchType
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
@@ -15,6 +17,9 @@ final class Message {
     var id: Long? = null
     var text: String? = null
     var timestamp: Long? = null
+
+    @Enumerated(EnumType.STRING)
+    var type: MessageType? = MessageType.COMMON
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "reply_to_id", referencedColumnName = "id", nullable = true, unique = false)

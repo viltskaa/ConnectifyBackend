@@ -2,7 +2,6 @@ package com.flagman.connectify.dto
 
 import com.flagman.connectify.models.Message
 import com.flagman.connectify.models.User
-import org.springframework.data.jpa.domain.AbstractPersistable_.id
 
 data class ReplyMessageDto (
     val id: Long,

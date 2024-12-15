@@ -1,9 +1,8 @@
 package com.flagman.connectify.dto
 
-data class ChatCreateDto(
+data class ChatUpdateDto(
+    val chatId: Long,
     var name: String,
-    var ownerId: Long,
     var color: String,
     var icon: String,
-    var users: String
 )

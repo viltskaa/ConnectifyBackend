@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface ChatUsersRepository: JpaRepository<ChatUsers, Long> {
+    fun findByChatIdAndUserId(chatId: Long, userId: Long): ChatUsers?
+    fun findFirstByChatIdOrderByTimestampDesc(chatId: Long): ChatUsers?
 }

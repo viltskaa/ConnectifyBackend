@@ -15,6 +15,7 @@ import java.time.ZoneId
 class MessageService(
     private val messagesRepository: MessagesRepository,
     private val authService: AuthService,
+    private val userService: UserService,
     private val chatService: ChatService,
 ) {
     fun createMessage(messageCreateDto: MessageCreateDto): MessageDto? {
@@ -23,7 +24,7 @@ class MessageService(
         message.text = messageCreateDto.text
         message.timestamp = System.currentTimeMillis()
 
-        val user: User? = authService.getUserFromToken(messageCreateDto.jwt);
+        val user: User? = userService.getUserById(messageCreateDto.userId)
         if (user == null) {
             return null
         }

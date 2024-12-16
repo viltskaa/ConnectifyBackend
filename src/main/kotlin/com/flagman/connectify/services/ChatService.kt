@@ -91,7 +91,10 @@ class ChatService(
 
         if (chat.owner!!.id!! != user.id!!) return null
 
-        chatRepository.delete(chat)
+        chat.deleted = true
+        chatRepository.save(chat)
+
+        chatUsersService.deleteAll(chat.users)
         return chat
     }
 

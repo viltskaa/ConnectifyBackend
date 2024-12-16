@@ -38,4 +38,6 @@ class ChatUsersService(
 
         return newOwner.user
     }
+
+    fun deleteAll(entities: Iterable<ChatUsers>) = chatUsersRepository.deleteAll(entities)
 }

@@ -10,7 +10,7 @@ import jakarta.persistence.ManyToOne
 import jakarta.persistence.OneToMany
 
 @Entity
-class Contacts {
+final class Contacts {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long? = null

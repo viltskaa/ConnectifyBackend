@@ -1,6 +1,7 @@
 package com.flagman.connectify.models
 
 import jakarta.persistence.CascadeType
+import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.FetchType
 import jakarta.persistence.GeneratedValue
@@ -8,6 +9,7 @@ import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.ManyToOne
 import jakarta.persistence.OneToMany
+import org.hibernate.annotations.ColumnDefault
 
 @Entity
 class Chat {
@@ -18,7 +20,15 @@ class Chat {
     var color: String? = null
     var icon: String? = null
 
-    @OneToMany(cascade = [(CascadeType.ALL)], mappedBy = "chat", fetch = FetchType.EAGER)
+    @ColumnDefault("false")
+    var deleted: Boolean = false
+
+    @OneToMany(
+        cascade = [CascadeType.PERSIST],
+        mappedBy = "chat",
+        fetch = FetchType.EAGER,
+        orphanRemoval = false
+    )
     var users: Set<ChatUsers> = mutableSetOf()
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = [(CascadeType.MERGE)])

@@ -9,13 +9,15 @@ data class UserDto(
     val jwt: String?,
     val online: Boolean?,
     val lastSeen: Long?,
+    val bio: String?,
 )
 
 fun toUserDto(user: User, jwt: String?) = UserDto(
     user.id!!,
     user.username!!,
-    user.username!!,
+    user.email!!,
     jwt,
     user.online,
-    user.lastSeen
+    user.lastSeen,
+    user.bio,
 )

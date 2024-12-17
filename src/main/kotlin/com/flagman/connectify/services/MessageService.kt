@@ -2,7 +2,9 @@ package com.flagman.connectify.services
 
 import com.flagman.connectify.dto.MessageCreateDto
 import com.flagman.connectify.dto.MessageDto
+import com.flagman.connectify.dto.MessageReportDto
 import com.flagman.connectify.dto.toMessageDto
+import com.flagman.connectify.dto.toMessageReportDto
 import com.flagman.connectify.models.Message
 import com.flagman.connectify.models.User
 import com.flagman.connectify.repositories.MessagesRepository
@@ -54,6 +56,8 @@ class MessageService(
             .map { it -> toMessageDto(it) }
     }
 
+    fun getAllMessagesByChatId(chatId: Long): List<MessageReportDto> =
+        messagesRepository.getAllByChatId(chatId).map { it -> toMessageReportDto(it) }.filterNotNull()
 
     fun getMessageById(id: Long): Message? = messagesRepository.findByIdOrNull(id)
 }

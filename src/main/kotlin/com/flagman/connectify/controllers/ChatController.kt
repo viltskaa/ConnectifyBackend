@@ -117,7 +117,7 @@ class ChatController(
 
     @SubscribeMapping("/history/{userId}")
     fun sendChatHistory(@DestinationVariable userId: Long): List<MessageDto?> {
-        return messageService.getUserMessages(userId);
+        return messageService.getUserMessages(userId)
     }
 }
 

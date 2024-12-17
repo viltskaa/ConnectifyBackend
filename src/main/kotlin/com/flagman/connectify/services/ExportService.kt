@@ -4,7 +4,6 @@ import com.itextpdf.io.font.FontProgramFactory
 import com.itextpdf.io.font.PdfEncodings
 import com.itextpdf.kernel.font.PdfFontFactory
 import com.itextpdf.kernel.pdf.PdfDocument
-import com.itextpdf.kernel.pdf.PdfName.*
 import com.itextpdf.kernel.pdf.PdfWriter
 import com.itextpdf.layout.Document
 import com.itextpdf.layout.element.Paragraph
@@ -15,8 +14,6 @@ import org.springframework.core.io.ClassPathResource
 import org.springframework.stereotype.Service
 import java.io.FileOutputStream
 import java.io.FileWriter
-import java.sql.Date
-import javax.swing.text.StyleConstants.FontConstants
 
 @Service
 class ExportService(
@@ -100,5 +97,5 @@ class ExportService(
         return filepath
     }
 
-    private fun generateFilename(): String = RandomStringUtils.random(20, true, true);
+    private fun generateFilename(): String = RandomStringUtils.random(20, true, true)
 }

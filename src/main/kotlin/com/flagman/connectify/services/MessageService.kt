@@ -10,13 +10,10 @@ import com.flagman.connectify.models.User
 import com.flagman.connectify.repositories.MessagesRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
-import java.time.LocalDateTime
-import java.time.ZoneId
 
 @Service
 class MessageService(
     private val messagesRepository: MessagesRepository,
-    private val authService: AuthService,
     private val userService: UserService,
     private val chatService: ChatService,
 ) {
@@ -40,17 +37,14 @@ class MessageService(
         }
 
         message = messagesRepository.save<Message>(message)
-        chatService.registerMessageInChat(messageCreateDto.chatId, message);
+        chatService.registerMessageInChat(messageCreateDto.chatId, message)
 
         return toMessageDto(message)
     }
 
-    fun getAllMessages(): List<MessageDto?> = messagesRepository
-        .findAll()
-        .map { it -> toMessageDto(it) }
 
     fun getUserMessages(userId: Long): List<MessageDto?> {
-        var chats = chatService.getUserChats(userId);
+        var chats = chatService.getUserChats(userId)
         return chats
             .flatMap { it -> it.messages }
             .map { it -> toMessageDto(it) }

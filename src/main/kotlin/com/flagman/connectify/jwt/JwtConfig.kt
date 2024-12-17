@@ -18,8 +18,6 @@ class JwtConfig(
 ) {
     private var jwtKey: SecretKey? = null
 
-    fun secret() = secret
-    fun getRefreshTokenExpiration() = refreshTokenExpiration
     fun getAccessTokenExpiration() = accessTokenExpiration
 
     fun getJwtKey(): SecretKey {

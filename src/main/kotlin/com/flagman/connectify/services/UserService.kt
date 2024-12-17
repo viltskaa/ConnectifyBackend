@@ -3,8 +3,6 @@ package com.flagman.connectify.services
 import com.flagman.connectify.models.User
 import com.flagman.connectify.repositories.UserRepository
 import org.springframework.stereotype.Service
-import java.time.LocalDateTime
-import java.time.ZoneId
 
 @Service
 class UserService(

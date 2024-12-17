@@ -39,6 +39,4 @@ final class Message {
 
     @ManyToOne(fetch = FetchType.LAZY)
     var chat: Chat? = null
-
-    fun setTimestamp(timestamp: Long) { this.timestamp = timestamp }
 }

@@ -1,7 +1,6 @@
 package com.flagman.connectify.controllers
 
 import com.flagman.connectify.dto.ContactDto
-import com.flagman.connectify.dto.MessageDto
 import com.flagman.connectify.dto.RequestApproveDto
 import com.flagman.connectify.dto.RequestCancelDto
 import com.flagman.connectify.dto.RequestCreateDto
@@ -96,7 +95,7 @@ class ContactsController(
 
     @SubscribeMapping("/historyRequests/{userId}")
     fun sendChatHistory(@DestinationVariable userId: Long): List<RequestDto?> {
-        return requestService.getRequestsByUserId(userId).map { it -> toRequestDto(it) };
+        return requestService.getRequestsByUserId(userId).map { it -> toRequestDto(it) }
     }
 
     @SubscribeMapping("/contacts/{userId}")

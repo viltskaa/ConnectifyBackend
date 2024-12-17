@@ -8,9 +8,9 @@ import org.springframework.web.filter.CommonsRequestLoggingFilter
 @Bean
 fun requestLoggingFilter(): CommonsRequestLoggingFilter {
     return CommonsRequestLoggingFilter().apply {
-        setIncludeClientInfo(true);
-        setIncludeQueryString(true);
-        setIncludePayload(true);
+        setIncludeClientInfo(true)
+        setIncludeQueryString(true)
+        setIncludePayload(true)
         setMaxPayloadLength(64000)
     }
 }

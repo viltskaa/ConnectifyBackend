@@ -12,6 +12,6 @@ class CorsConfig: WebMvcConfigurer {
             .addMapping("/**")
             .maxAge(3600)
             .allowedOrigins("http://localhost:5173")
-            .allowedMethods("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS");
+            .allowedMethods("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS")
     }
 }

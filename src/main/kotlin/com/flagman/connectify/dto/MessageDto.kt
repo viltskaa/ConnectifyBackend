@@ -18,7 +18,7 @@ fun toMessageDto(msg: Message): MessageDto? {
         return null
     }
 
-    val reply = toReplyMessageDto(msg);
+    val reply = toReplyMessageDto(msg)
 
     return MessageDto(
         msg.id!!,

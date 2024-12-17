@@ -1,6 +1,5 @@
 package com.flagman.connectify.models
 
-import io.swagger.v3.oas.annotations.info.Contact
 import jakarta.persistence.*
 import lombok.Getter
 import lombok.Setter

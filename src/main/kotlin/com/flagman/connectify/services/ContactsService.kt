@@ -3,7 +3,6 @@ package com.flagman.connectify.services
 import com.flagman.connectify.models.ContactRequest
 import com.flagman.connectify.models.Contacts
 import com.flagman.connectify.repositories.ContactsRepository
-import io.swagger.v3.oas.annotations.info.Contact
 import org.springframework.stereotype.Service
 
 @Service

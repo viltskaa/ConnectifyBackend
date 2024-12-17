@@ -1,7 +1,6 @@
 package com.flagman.connectify.jwt
 
 import io.jsonwebtoken.Jwts
-import org.springframework.context.annotation.Bean
 import org.springframework.stereotype.Component
 import java.util.Date
 
